@@ -1,8 +1,11 @@
 package com.syamantakm.model;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  * @author Syamantak Mukhopadhyay
  */
+@XmlRootElement
 public class CacheEntry {
     private int id;
     private String name;
