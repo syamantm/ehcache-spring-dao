@@ -1,0 +1,1 @@
+ Jersey , EHCache, Spring dao
