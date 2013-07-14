@@ -15,8 +15,8 @@ public class LocalCacheImpl implements LocalCache {
 
     @Override
     public <T> T get(Object key, Class<T> tClass) {
-        if(cache.isKeyInCache(key)) {
-            return (T)cache.get(key).getObjectValue();
+        if (cache.isKeyInCache(key)) {
+            return (T) cache.get(key).getObjectValue();
         }
         return null;
     }

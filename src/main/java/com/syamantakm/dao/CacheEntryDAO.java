@@ -7,7 +7,10 @@ import com.syamantakm.model.CacheEntry;
  */
 public interface CacheEntryDAO {
     int createEntry(String name);
+
     void updateEntry(CacheEntry entry);
+
     void deleteEntry(int id);
+
     CacheEntry findById(int id);
 }

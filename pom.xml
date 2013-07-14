@@ -43,6 +43,12 @@
             <version>${spring.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjrt</artifactId>
+            <version>1.7.0</version>
+        </dependency>
+
         <!-- MySQL JDBC connector, Connection pool etc-->
         <dependency>
             <groupId>mysql</groupId>
@@ -117,6 +123,22 @@
                 <configuration>
                     <compilerVersion>${jdk.version}</compilerVersion>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>aspectj-maven-plugin</artifactId>
+                <version>1.4</version>
+                <configuration>
+                    <complianceLevel>1.6</complianceLevel>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>compile</goal>
+                            <goal>test-compile</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>

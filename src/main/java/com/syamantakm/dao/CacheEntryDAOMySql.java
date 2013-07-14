@@ -60,7 +60,7 @@ public class CacheEntryDAOMySql implements CacheEntryDAO {
                     new PreparedStatementCreator() {
                         public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
                             PreparedStatement ps =
-                                    connection.prepareStatement(SQL_INSERT, new String[] {"id"});
+                                    connection.prepareStatement(SQL_INSERT, new String[]{"id"});
                             ps.setString(1, name);
                             return ps;
                         }
@@ -69,7 +69,7 @@ public class CacheEntryDAOMySql implements CacheEntryDAO {
             int id = keyHolder.getKey().intValue();
 
             // put it in the cache, so that next time it picks up from the cache
-            if(id > 0) {
+            if (id > 0) {
                 CacheEntry entry = findById(id);
                 localCache.put(id, entry);
             }
@@ -88,7 +88,7 @@ public class CacheEntryDAOMySql implements CacheEntryDAO {
             int updatedRows = jdbcTemplate.update(SQL_UPDATE, entry.getName(), entry.getId());
 
             // put it in the cache, so that next time it picks up from the cache
-            if(updatedRows > 0) {
+            if (updatedRows > 0) {
                 localCache.put(entry.getId(), entry);
             }
         } catch (DataAccessException e) {
@@ -104,7 +104,7 @@ public class CacheEntryDAOMySql implements CacheEntryDAO {
             int updatedRows = jdbcTemplate.update(SQL_DELETE, id);
 
             // remove from cache if delete if successful
-            if(updatedRows > 0) {
+            if (updatedRows > 0) {
                 localCache.remove(id);
             }
         } catch (DataAccessException e) {
@@ -119,7 +119,7 @@ public class CacheEntryDAOMySql implements CacheEntryDAO {
 
         CacheEntry entry = null;
         entry = localCache.get(id, CacheEntry.class);
-        if(entry != null) {
+        if (entry != null) {
             return entry;
         }
 

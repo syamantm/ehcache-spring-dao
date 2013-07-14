@@ -16,7 +16,7 @@ public enum SpringFactory {
         context = new ClassPathXmlApplicationContext("applicationContext.xml");
     }
 
-    public <T> T  getBean(Class<T> tClass) {
+    public <T> T getBean(Class<T> tClass) {
         return this.context.getBean(tClass);
     }
 }
