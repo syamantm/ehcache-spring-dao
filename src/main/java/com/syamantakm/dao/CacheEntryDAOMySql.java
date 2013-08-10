@@ -3,7 +3,7 @@ package com.syamantakm.dao;
 import com.syamantakm.cache.LocalCache;
 import com.syamantakm.common.DAOException;
 import com.syamantakm.model.CacheEntry;
-import org.apache.log4j.Logger;
+import com.syamantakm.monitoring.annotation.Measurable;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
@@ -17,6 +17,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 /**
@@ -24,7 +26,7 @@ import java.sql.SQLException;
  */
 @Transactional(readOnly = false)
 public class CacheEntryDAOMySql implements CacheEntryDAO {
-    private static final Logger LOGGER = Logger.getLogger(CacheEntryDAOMySql.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(CacheEntryDAOMySql.class);
 
     public static final String TABLE_NAME = "cache_entry";
     public static final String COLUMN_ID = "ID";
@@ -52,6 +54,7 @@ public class CacheEntryDAOMySql implements CacheEntryDAO {
     }
 
     @Override
+    @Measurable(enabled = true)
     public int createEntry(final String name) {
         try {
             LOGGER.info(String.format("Creating cache entry with name : {%s}", name));
@@ -82,6 +85,7 @@ public class CacheEntryDAOMySql implements CacheEntryDAO {
     }
 
     @Override
+    @Measurable(enabled = true)
     public void updateEntry(CacheEntry entry) {
         try {
             LOGGER.info(String.format("Updating cache entry with id :%d, name : {%s}", entry.getId(), entry.getName()));
@@ -98,6 +102,7 @@ public class CacheEntryDAOMySql implements CacheEntryDAO {
     }
 
     @Override
+    @Measurable(enabled = true)
     public void deleteEntry(int id) {
         try {
             LOGGER.info(String.format("Deleting cache entry with id : {%d}", id));
@@ -115,6 +120,7 @@ public class CacheEntryDAOMySql implements CacheEntryDAO {
 
     @Override
     @Transactional(readOnly = true)
+    @Measurable(enabled = true)
     public CacheEntry findById(int id) {
 
         CacheEntry entry = null;

@@ -7,9 +7,11 @@ import net.sf.ehcache.Element;
  * @author Syamantak Mukhopadhyay
  */
 public class LocalCacheImpl implements LocalCache {
+    private boolean isCachingRequired;
     private Cache cache;
 
-    public LocalCacheImpl(Cache cache) {
+    public LocalCacheImpl(boolean cachingRequired, Cache cache) {
+        isCachingRequired = cachingRequired;
         this.cache = cache;
     }
 

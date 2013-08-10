@@ -1,0 +1,1 @@
+curl -v -X PUT -H"Content-type:application/json" --data-binary @cacheentry.json http://localhost:8080/cache-dao/v0/cache/new
